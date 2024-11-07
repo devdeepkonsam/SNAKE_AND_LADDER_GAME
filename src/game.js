@@ -4,7 +4,7 @@ let winSound = new Audio('winharpsichord-39642.mp3');
 let playersSum = [0, 0];
 let snakeAndLadder = {12: 50, 4: 56, 14: 55, 22: 58, 41: 79, 54: 88, 96: 42, 94: 71, 75: 32, 48: 16, 37: 3, 28: 10};
 
-let gameOver = false; // Flag to track if the game is over
+let gameOver = false;
 
 function play(playerIndex, playerId, correction, num) {
     playersSum[playerIndex] += num;
@@ -21,17 +21,15 @@ function play(playerIndex, playerId, correction, num) {
     if (sum === 100 && !gameOver) {
         winSound.play();
 
-        // Set the player's position at the bottom-left corner
-        document.getElementById(`${playerId}`).style.left = `${0 * 62}px`;  // Column 0 (leftmost)
-        document.getElementById(`${playerId}`).style.top = `${-9 * 62 - correction}px`;  // Row 9 (bottom row)
+        document.getElementById(`${playerId}`).style.left = `${0 * 62}px`;
+        document.getElementById(`${playerId}`).style.top = `${-9 * 62 - correction}px`;
 
-        // Prevent multiple alerts and reloads
-        gameOver = true; // Set the flag to true
+        gameOver = true;
 
         setTimeout(() => {
             alert((playerIndex === 0 ? "Red" : "Blue") + " Won!!");
-            location.reload(); // Reload the page after a short delay
-        }, 500);  // Show alert after a short delay to allow the player to reach 100
+            location.reload();
+        }, 500);
     } else {
         let n1 = Math.floor(sum / 10);
         let n2 = sum % 10;
@@ -46,16 +44,12 @@ function play(playerIndex, playerId, correction, num) {
     }
 }
 
-
-
-
 document.getElementById("diceBtn").addEventListener("click", function () {
     rollingSound.play();
 
     let num = Math.floor(Math.random() * 6) + 1;
     let currentPlayerColor = tog % 2 !== 0 ? "Red" : "Blue";
 
-    // Update the turn display to show the current player's turn and dice roll in one line
     document.getElementById("tog").innerText = `${currentPlayerColor}'s Turn: ${num}`;
     document.getElementById("lastRoll").innerText = `Last Roll (${currentPlayerColor}): ${num}`;
 
