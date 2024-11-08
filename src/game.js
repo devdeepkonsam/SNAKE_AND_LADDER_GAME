@@ -1,6 +1,4 @@
 let Turn = 1;
-//let rollingSound = new Audio('rolling.mp3');
-//let winSound = new Audio('win.mp3');
 let playersSum = [0, 0];
 let snakeAndLadder = {12: 50, 4: 56, 14: 55, 22: 58, 41: 79, 54: 88, 96: 42, 94: 71, 75: 32, 48: 16, 37: 3, 28: 10};
 
@@ -19,7 +17,6 @@ function play(playerIndex, playerId, correction, num) {
     document.getElementById(`${playerId}`).style.transition = sum === 100 ? "none" : "linear all .5s";
 
     if (sum === 100 && !gameOver) {
-        winSound.play();
 
         document.getElementById(`${playerId}`).style.left = `${0 * 62}px`;
         document.getElementById(`${playerId}`).style.top = `${-9 * 62 - correction}px`;
@@ -45,7 +42,6 @@ function play(playerIndex, playerId, correction, num) {
 }
 
 document.getElementById("diceBtn").addEventListener("click", function () {
-    rollingSound.play();
 
     let num = Math.floor(Math.random() * 6) + 1;
     let currentPlayerColor = Turn % 2 !== 0 ? "Red" : "Blue";
