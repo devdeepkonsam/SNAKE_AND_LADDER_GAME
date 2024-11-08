@@ -1,6 +1,6 @@
-let tog = 1;
-let rollingSound = new Audio('rpg-dice-rolling-95182.mp3');
-let winSound = new Audio('winharpsichord-39642.mp3');
+let Turn = 1;
+//let rollingSound = new Audio('rolling.mp3');
+//let winSound = new Audio('win.mp3');
 let playersSum = [0, 0];
 let snakeAndLadder = {12: 50, 4: 56, 14: 55, 22: 58, 41: 79, 54: 88, 96: 42, 94: 71, 75: 32, 48: 16, 37: 3, 28: 10};
 
@@ -48,21 +48,21 @@ document.getElementById("diceBtn").addEventListener("click", function () {
     rollingSound.play();
 
     let num = Math.floor(Math.random() * 6) + 1;
-    let currentPlayerColor = tog % 2 !== 0 ? "Red" : "Blue";
+    let currentPlayerColor = Turn % 2 !== 0 ? "Red" : "Blue";
 
-    document.getElementById("tog").innerText = `${currentPlayerColor}'s Turn: ${num}`;
+    document.getElementById("Turn").innerText = `${currentPlayerColor}'s Turn: ${num}`;
     document.getElementById("lastRoll").innerText = `Last Roll (${currentPlayerColor}): ${num}`;
 
-    if (tog % 2 !== 0) {
+    if (Turn % 2 !== 0) {
         play(0, 'p1', 0, num);
     } else {
         play(1, 'p2', 55, num);
     }
 
-    tog++;
+    Turn++;
 
     setTimeout(() => {
-        document.getElementById("tog").innerText = `${currentPlayerColor === "Red" ? "Blue" : "Red"}'s Turn: 0`;
+        document.getElementById("Turn").innerText = `${currentPlayerColor === "Red" ? "Blue" : "Red"}'s Turn: 0`;
         document.getElementById("dice").innerText = "0";
     }, 1000);
 });
